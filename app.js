@@ -1,7 +1,16 @@
-
 document.getElementById("search").addEventListener('click', search);
 
+/**
+ * Busca un usuario
+ * * Proporciona foto, nombre, localizacion si dispone y email sacado de los push del usuario
+ */
+
 function search(){
+     /**
+     * Nombre de usuario de GitHub introducido
+     * @param {string} user
+     */
+
     user = document.getElementById("user").value;
     fetch('https://api.github.com/users/'+user)
     .then( res => res.json())
@@ -13,7 +22,7 @@ function search(){
             fetch('https://api.github.com/users/'+ user +'/events')
             .then( res => res.json())
             .then( data2 => {
-                for(let i=1; i<=30; i++){
+                for(let i=0; i<=30; i++){
                     if(data2[i].type === "PushEvent"){
                         var push = i;
                         break;
